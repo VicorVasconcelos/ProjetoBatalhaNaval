@@ -6,7 +6,7 @@ Seja bem-vindo ao primeiro passo da nossa gloriosa jornada na Batalha Naval. Aqu
 colocar dois navios no tabuleiro sem afundar o próprio barco.
 
 ## 📜 Descrição
-- Criamos um tabuleiro 10x10 só na moral, inicializando tudo com `0` (água).
+- Criamos um tabuleiro 10x10  na moralzinha, inicializando tudo com `0` (água).
 - Dois navios de tamanho **3** foram posicionados: um horizontal e outro vertical.
 - Os navios são representados pelo número `3` (porque 3 é o número da sorte do marujo 😏).
 - Nada de sobreposição! Cada um no seu quadrado, como bons marinheiros.
@@ -20,7 +20,6 @@ colocar dois navios no tabuleiro sem afundar o próprio barco.
 - Tamanho do tabuleiro: 10x10
 - Tamanho do navio: 3 posições
 - Coordenadas definidas direto no código (nada de input do usuário nesse nível).
-- Nada de `const`, aqui é na raça mesmo!
 
 ## 💻 Execução
 1. Compila o programa:
