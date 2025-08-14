@@ -1,50 +1,60 @@
 
-# 🚢 Batalha Naval - Desafio Nível Novato
+# 🚢 Batalha Naval — Nível Aventureiro
 
-Fala, comandante! 😎
-Seja bem-vindo ao primeiro passo da nossa gloriosa jornada na Batalha Naval. Aqui, o objetivo era simples:
-colocar dois navios no tabuleiro sem afundar o próprio barco.
+Boa noite, comandante! 😎 Bora elevar a maré. Agora o tabuleiro ganhou **navios na diagonal** além dos horizontais/verticais.
 
-## 📜 Descrição
-- Criamos um tabuleiro 10x10  na moralzinha, inicializando tudo com `0` (água).
-- Dois navios de tamanho **3** foram posicionados: um horizontal e outro vertical.
-- Os navios são representados pelo número `3` (porque 3 é o número da sorte do marujo 😏).
-- Nada de sobreposição! Cada um no seu quadrado, como bons marinheiros.
+## ✅ O que foi entregue
+- **Tabuleiro 10x10** (matriz) inicializado com `0` (água).
+- **Quatro navios tamanho 3**:
+  - 2 lineares (horizontal e vertical)
+  - 2 diagonais: ↘ (linha e coluna aumentam) e ↙ (linha aumenta, coluna diminui)
+- **Validação** de limites e **proibição de sobreposição**.
+- **Impressão** do tabuleiro formatado com cabeçalho de linhas/colunas.
 
-## 🎯 Objetivo
-- Mostrar o tabuleiro no console, com navios e água bem organizados.
-- Usar loops aninhados para percorrer e exibir o tabuleiro.
-- Garantir que os navios não saiam navegando fora do mapa.
+## 🧠 Lógica de posicionamento
+- **Lineares**: checamos se `col + tamanho - 1 < 10` (horizontal) ou `lin + tamanho - 1 < 10` (vertical) e se todas as casas são `0` antes de gravar `3`.
+- **Diagonais**: verificamos passo a passo:
+  - ↘: `(lin + k, col + k)`
+  - ↙: `(lin + k, col - k)`
+  - Em ambos os casos, validamos **limites** e **ausência de sobreposição**.
 
-## 📌 Regras
-- Tamanho do tabuleiro: 10x10
-- Tamanho do navio: 3 posições
-- Coordenadas definidas direto no código (nada de input do usuário nesse nível).
+## 🗺️ Coordenadas usadas (tamanho 3)
+- Navio A (horizontal): `(1,2) → (1,4)`
+- Navio B (vertical): `(5,7) → (7,7)`
+- Navio C (diagonal ↘): `(3,3) → (5,5)`
+- Navio D (diagonal ↙): `(7,5) → (9,3)`
 
-## 💻 Execução
-1. Compila o programa:
-   ```bash
-   gcc batalha_naval.c -o batalha_naval
-   ```
-2. Executa:
-   ```bash
-   ./batalha_naval
-   ```
+> Todas estas posições **não se cruzam** e ficam dentro do tabuleiro 0–9.
 
-## 🏆 Resultado esperado
+## 🧾 Saída (exemplo)
 ```
-   0 1 2 3 4 5 6 7 8 9
-0  0 0 0 0 0 0 0 0 0 0
-1  0 0 0 0 0 0 0 0 0 0
-2  0 0 0 0 3 3 3 0 0 0
-3  0 0 0 0 0 0 0 0 0 0
-4  0 0 0 0 0 0 0 0 0 0
-5  0 3 0 0 0 0 0 0 0 0
-6  0 3 0 0 0 0 0 0 0 0
-7  0 3 0 0 0 0 0 0 0 0
-8  0 0 0 0 0 0 0 0 0 0
-9  0 0 0 0 0 0 0 0 0 0
+=== Batalha Naval - Nivel Aventureiro ===
+Legenda: 0=agua, 3=navio (tamanho 3)
+
+     0  1  2  3  4  5  6  7  8  9
+ 0   0  0  0  0  0  0  0  0  0  0
+ 1   0  0  3  3  3  0  0  0  0  0
+ 2   0  0  0  0  0  0  0  0  0  0
+ 3   0  0  0  3  0  0  0  0  0  0
+ 4   0  0  0  0  3  0  0  0  0  0
+ 5   0  0  0  0  0  3  0  3  0  0
+ 6   0  0  0  0  0  0  0  3  0  0
+ 7   0  0  0  0  0  3  0  3  0  0
+ 8   0  0  0  0  3  0  0  0  0  0
+ 9   0  0  0  3  0  0  0  0  0  0
 ```
 
-## 🏁 Observações
-Esse foi só o aquecimento.
+> Nota: O exemplo acima é apenas ilustrativo — a disposição final depende das coordenadas que definimos no código (as listadas acima).
+
+## 🔧 Como compilar e rodar
+```bash
+gcc batalha_naval_aventureiro.c -o batalha_naval_aventureiro
+./batalha_naval_aventureiro
+```
+
+## 📦 Estrutura do código
+- `inicializar_tabuleiro`: zera a matriz.
+- `verifica_linear` / `posicionar_linear`: valida e posiciona horizontais/verticais.
+- `verifica_diagonal` / `posicionar_diagonal`: valida e posiciona diagonais ↘ e ↙.
+- `imprimir_tabuleiro`: imprime cabeçalho + matriz 10x10.
+
