@@ -102,14 +102,14 @@ gcc batalha_naval_mestre.c -o batalha_naval_mestre
 
 # 📦 Estrutura do código
 
-inicializar_tabuleiro → preenche o tabuleiro com 0 (água).
+`inicializar_tabuleiro` → preenche o tabuleiro com 0 (água).
 
-verifica_linear / posicionar_linear → validam e posicionam navios lineares.
+`verifica_linear / posicionar_linear` → validam e posicionam navios lineares.
 
-verifica_diagonal / posicionar_diagonal → validam e posicionam navios diagonais.
+`verifica_diagonal / posicionar_diagonal` → validam e posicionam navios diagonais.
 
-gerar_cone, gerar_cruz, gerar_octaedro → constroem as matrizes das habilidades.
+`gerar_cone, gerar_cruz, gerar_octaedro` → constroem as matrizes das habilidades.
 
-aplicar_habilidade → sobrepõe uma habilidade no tabuleiro principal.
+`aplicar_habilidade` → sobrepõe uma habilidade no tabuleiro principal.
 
-imprimir_tabuleiro → mostra o tabuleiro final com cabeçalhos e legenda.
+`imprimir_tabuleiro` → mostra o tabuleiro final com cabeçalhos e legenda.
