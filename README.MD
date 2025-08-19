@@ -1,83 +1,80 @@
-🚢 Batalha Naval — Nível Mestre
-Boa noite, comandante! 😎 A maré subiu e a estratégia está a outro nível! Agora o tabuleiro ganhou habilidades especiais com áreas de efeito distintas para apimentar o jogo.
+# 🚢 Batalha Naval — Nível Mestre
 
-✅ O que foi entregue
-Tabuleiro 10x10 (matriz) inicializado com 0 (água).
+Boa noite, comandante! 😎 A maré subiu e a estratégia está a outro nível! Agora o tabuleiro ganhou **habilidades especiais com áreas de efeito distintas** para apimentar o jogo.
 
-Quatro navios tamanho 3 (2 lineares, 2 diagonais), com validação de limites e proibição de sobreposição.
+## ✅ O que foi entregue
 
-Três matrizes de habilidade (Cone, Cruz, Octaedro) com tamanho fixo (5x5) e valores 0 (não afetado) e 1 (afetado).
+* **Tabuleiro 10x10** (matriz) inicializado com `0` (água).
 
-A matriz Cone representa uma área com ponto de origem no topo, expandindo-se para a base, conforme o exemplo (3x5).
+* **Quatro navios tamanho 3** (2 lineares, 2 diagonais), com validação de limites e proibição de sobreposição.
 
-A matriz Cruz representa uma área em forma de cruz, com o ponto de origem no centro, conforme o exemplo (3x5).
+* **Três matrizes de habilidade** (Cone, Cruz, Octaedro) com tamanho fixo (`5x5`) e valores `0` (não afetado) e `1` (afetado).
 
-A matriz Octaedro representa a vista frontal de um octaedro (losango), com o ponto de origem no centro, conforme o exemplo (3x5).
+    * A **matriz Cone** representa uma área com ponto de origem no topo, expandindo-se para a base, conforme o exemplo **(3x5)**.
 
-Definição de pontos de origem para cada habilidade no tabuleiro.
+    * A **matriz Cruz** representa uma área em forma de cruz, com o ponto de origem no centro, conforme o exemplo **(3x5)**.
 
-Lógica para sobrepor as matrizes de habilidade no tabuleiro principal, centrando-as nos pontos de origem e respeitando os limites.
+    * A **matriz Octaedro** representa a vista frontal de um octaedro (losango), com o ponto de origem no centro, conforme o exemplo **(3x5)**.
 
-Exibição completa do tabuleiro com navios e áreas de efeito das habilidades, utilizando diferentes caracteres para representar:
+* **Definição de pontos de origem** para cada habilidade no tabuleiro.
 
-0 = água
+* **Lógica** para **sobrepor** as matrizes de habilidade no tabuleiro principal, centrando-as nos pontos de origem e respeitando os limites.
 
-3 = navio
+* **Exibição completa do tabuleiro** com navios e áreas de efeito das habilidades, utilizando diferentes caracteres para representar:
 
-4 = área de efeito (Cone)
+    * `0` = água
 
-7 = área de efeito (Cruz)
+    * `3` = navio
 
-8 = área de efeito (Octaedro)
+    * `4` = área de efeito (Cone)
 
-Utilização obrigatória de loops aninhados e condicionais para a construção das matrizes de habilidade e para a sobreposição no tabuleiro.
+    * `7` = área de efeito (Cruz)
 
-🧠 Lógica de posicionamento e Habilidades Especiais
-Navios Lineares: checamos se col + tamanho - 1 < 10 (horizontal) ou lin + tamanho - 1 < 10 (vertical) e se todas as casas são 0 antes de gravar 3.
+    * `8` = área de efeito (Octaedro)
 
-Navios Diagonais: verificamos passo a passo:
+* **Utilização obrigatória de loops aninhados e condicionais** para a construção das matrizes de habilidade e para a sobreposição no tabuleiro.
 
-↘: (lin + k, col + k)
+## 🧠 Lógica de posicionamento e Habilidades Especiais
 
-↙: (lin + k, col - k)
+* **Navios Lineares**: checamos se `col + tamanho - 1 < 10` (horizontal) ou `lin + tamanho - 1 < 10` (vertical) e se todas as casas são `0` antes de gravar `3`.
 
-Em ambos os casos, validamos limites e ausência de sobreposição.
+* **Navios Diagonais**: verificamos passo a passo:
 
-Habilidades Especiais:
+    * ↘: `(lin + k, col + k)`
 
-As formas são geradas dinamicamente dentro de suas respectivas matrizes 5x5, copiando padrões explícitos de 3x5 (baseados nos exemplos), usando loops aninhados e condicionais (abs() para o Octaedro).
+    * ↙: `(lin + k, col - k)`
 
-A sobreposição no tabuleiro é feita calculando o deslocamento (offset) a partir do centro da habilidade para garantir que a área de efeito seja centralizada e não ultrapasse os limites do tabuleiro.
+    * Em ambos os casos, validamos **limites** e **ausência de sobreposição**.
 
-Cone (4): Ponto inicial (topo) e expansão para baixo, formando um triângulo.
+* **Habilidades Especiais**:
 
-Cruz (7): Linha e coluna centrais são marcadas.
+    * As formas são geradas dinamicamente dentro de suas respectivas matrizes 5x5, copiando padrões explícitos de **3x5** (baseados nos exemplos), usando loops aninhados e condicionais (`abs()` para o Octaedro).
 
-Octaedro (8): Forma de losango, marcada pela distância de Manhattan ao centro.
+    * A sobreposição do tabuleiro é feita calculando o deslocamento (`offset`) a partir do centro da habilidade para garantir que a área de efeito seja centralizada e não ultrapasse os limites do tabuleiro.
 
-🗺️ Coordenadas usadas (exemplos)
-Navio A (horizontal): (1,2) → (1,4)
+    * **Cone (4):** Ponto inicial (topo) e expansão para baixo, formando um triângulo.
 
-Navio B (vertical): (5,7) → (7,7)
+    * **Cruz (7):** Linha e coluna centrais são marcadas.
 
-Navio C (diagonal ↘): (3,3) → (5,5)
+    * **Octaedro (8):** Forma de losango, marcada pela distância de Manhattan ao centro.
 
-Navio D (diagonal ↙): (7,5) → (9,3)
+## 🗺️ Coordenadas usadas (exemplos)
 
-Habilidade Cone: Centrado em (2,2)
+* Navio A (horizontal): `(1,2) → (1,4)`
 
-Habilidade Cruz: Centrado em (6,4)
+* Navio B (vertical): `(5,7) → (7,7)`
 
-Habilidade Octaedro: Centrado em (8,8)
+* Navio C (diagonal ↘): `(3,3) → (5,5)`
 
-🧾 Saída (exemplo)
-=== Batalha Naval - Nivel Mestre ===
-Legenda:
-  0 = agua
-  3 = navio
-  4 = area de efeito (Cone)
-  7 = area de efeito (Cruz)
-  8 = area de efeito (Octaedro)
+* Navio D (diagonal ↙): `(7,5) → (9,3)`
+
+* Habilidade Cone: Centrado em `(2,2)`
+
+* Habilidade Cruz: Centrado em `(6,4)`
+
+* Habilidade Octaedro: Centrado em `(8,8)`
+
+## 🧾 Saída (exemplo)
 
      0  1  2  3  4  5  6  7  8  9
  0   0  0  0  0  0  0  0  0  0  0
@@ -91,21 +88,24 @@ Legenda:
  8   0  0  0  0  7  3  0  8  8  8
  9   0  0  0  0  0  0  0  0  8  0
 
-Nota: O exemplo acima é apenas ilustrativo — a disposição final depende das coordenadas que definimos no código.
+> Nota: O exemplo acima é apenas ilustrativo — a disposição final depende das coordenadas que definimos no código.
 
-🔧 Como compilar e rodar
+## 🔧 Como compilar e rodar
+
+```bash
 gcc batalha_naval_mestre.c -o batalha_naval_mestre
 ./batalha_naval_mestre
 
-📦 Estrutura do código
-inicializar_tabuleiro: zera a matriz.
+# 📦 Estrutura do código
 
-verifica_linear / posicionar_linear: valida e posiciona navios horizontais/verticais.
+inicializar_tabuleiro → preenche o tabuleiro com 0 (água).
 
-verifica_diagonal / posicionar_diagonal: valida e posiciona navios diagonais ↘ e ↙.
+verifica_linear / posicionar_linear → validam e posicionam navios lineares.
 
-gerar_cone, gerar_cruz, gerar_octaedro: criam as formas das habilidades em suas próprias matrizes.
+verifica_diagonal / posicionar_diagonal → validam e posicionam navios diagonais.
 
-aplicar_habilidade: sobrepõe a matriz de habilidade no tabuleiro principal.
+gerar_cone, gerar_cruz, gerar_octaedro → constroem as matrizes das habilidades.
 
-imprimir_tabuleiro: imprime cabeçalho + matriz 10x10 com todas as representações.
+aplicar_habilidade → sobrepõe uma habilidade no tabuleiro principal.
+
+imprimir_tabuleiro → mostra o tabuleiro final com cabeçalhos e legenda.
