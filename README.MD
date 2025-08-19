@@ -76,6 +76,7 @@ Boa noite, comandante! 😎 A maré subiu e a estratégia está a outro nível! 
 
 ## 🧾 Saída (exemplo)
 
+```
      0  1  2  3  4  5  6  7  8  9
  0   0  0  0  0  0  0  0  0  0  0
  1   0  0  3  3  3  0  0  0  0  0
@@ -87,6 +88,8 @@ Boa noite, comandante! 😎 A maré subiu e a estratégia está a outro nível! 
  7   0  0  7  7  7  7  7  3  8  0
  8   0  0  0  0  7  3  0  8  8  8
  9   0  0  0  0  0  0  0  0  8  0
+```
+
 
 > Nota: O exemplo acima é apenas ilustrativo — a disposição final depende das coordenadas que definimos no código.
 
@@ -95,6 +98,7 @@ Boa noite, comandante! 😎 A maré subiu e a estratégia está a outro nível! 
 ```bash
 gcc batalha_naval_mestre.c -o batalha_naval_mestre
 ./batalha_naval_mestre
+```
 
 # 📦 Estrutura do código
 
