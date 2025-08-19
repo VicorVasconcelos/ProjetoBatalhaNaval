@@ -1,60 +1,111 @@
+🚢 Batalha Naval — Nível Mestre
+Boa noite, comandante! 😎 A maré subiu e a estratégia está a outro nível! Agora o tabuleiro ganhou habilidades especiais com áreas de efeito distintas para apimentar o jogo.
 
-# 🚢 Batalha Naval — Nível Aventureiro
+✅ O que foi entregue
+Tabuleiro 10x10 (matriz) inicializado com 0 (água).
 
-Boa noite, comandante! 😎 Bora elevar a maré. Agora o tabuleiro ganhou **navios na diagonal** além dos horizontais/verticais.
+Quatro navios tamanho 3 (2 lineares, 2 diagonais), com validação de limites e proibição de sobreposição.
 
-## ✅ O que foi entregue
-- **Tabuleiro 10x10** (matriz) inicializado com `0` (água).
-- **Quatro navios tamanho 3**:
-  - 2 lineares (horizontal e vertical)
-  - 2 diagonais: ↘ (linha e coluna aumentam) e ↙ (linha aumenta, coluna diminui)
-- **Validação** de limites e **proibição de sobreposição**.
-- **Impressão** do tabuleiro formatado com cabeçalho de linhas/colunas.
+Três matrizes de habilidade (Cone, Cruz, Octaedro) com tamanho fixo (5x5) e valores 0 (não afetado) e 1 (afetado).
 
-## 🧠 Lógica de posicionamento
-- **Lineares**: checamos se `col + tamanho - 1 < 10` (horizontal) ou `lin + tamanho - 1 < 10` (vertical) e se todas as casas são `0` antes de gravar `3`.
-- **Diagonais**: verificamos passo a passo:
-  - ↘: `(lin + k, col + k)`
-  - ↙: `(lin + k, col - k)`
-  - Em ambos os casos, validamos **limites** e **ausência de sobreposição**.
+A matriz Cone representa uma área com ponto de origem no topo, expandindo-se para a base, conforme o exemplo (3x5).
 
-## 🗺️ Coordenadas usadas (tamanho 3)
-- Navio A (horizontal): `(1,2) → (1,4)`
-- Navio B (vertical): `(5,7) → (7,7)`
-- Navio C (diagonal ↘): `(3,3) → (5,5)`
-- Navio D (diagonal ↙): `(7,5) → (9,3)`
+A matriz Cruz representa uma área em forma de cruz, com o ponto de origem no centro, conforme o exemplo (3x5).
 
-> Todas estas posições **não se cruzam** e ficam dentro do tabuleiro 0–9.
+A matriz Octaedro representa a vista frontal de um octaedro (losango), com o ponto de origem no centro, conforme o exemplo (3x5).
 
-## 🧾 Saída (exemplo)
-```
-=== Batalha Naval - Nivel Aventureiro ===
-Legenda: 0=agua, 3=navio (tamanho 3)
+Definição de pontos de origem para cada habilidade no tabuleiro.
+
+Lógica para sobrepor as matrizes de habilidade no tabuleiro principal, centrando-as nos pontos de origem e respeitando os limites.
+
+Exibição completa do tabuleiro com navios e áreas de efeito das habilidades, utilizando diferentes caracteres para representar:
+
+0 = água
+
+3 = navio
+
+4 = área de efeito (Cone)
+
+7 = área de efeito (Cruz)
+
+8 = área de efeito (Octaedro)
+
+Utilização obrigatória de loops aninhados e condicionais para a construção das matrizes de habilidade e para a sobreposição no tabuleiro.
+
+🧠 Lógica de posicionamento e Habilidades Especiais
+Navios Lineares: checamos se col + tamanho - 1 < 10 (horizontal) ou lin + tamanho - 1 < 10 (vertical) e se todas as casas são 0 antes de gravar 3.
+
+Navios Diagonais: verificamos passo a passo:
+
+↘: (lin + k, col + k)
+
+↙: (lin + k, col - k)
+
+Em ambos os casos, validamos limites e ausência de sobreposição.
+
+Habilidades Especiais:
+
+As formas são geradas dinamicamente dentro de suas respectivas matrizes 5x5, copiando padrões explícitos de 3x5 (baseados nos exemplos), usando loops aninhados e condicionais (abs() para o Octaedro).
+
+A sobreposição no tabuleiro é feita calculando o deslocamento (offset) a partir do centro da habilidade para garantir que a área de efeito seja centralizada e não ultrapasse os limites do tabuleiro.
+
+Cone (4): Ponto inicial (topo) e expansão para baixo, formando um triângulo.
+
+Cruz (7): Linha e coluna centrais são marcadas.
+
+Octaedro (8): Forma de losango, marcada pela distância de Manhattan ao centro.
+
+🗺️ Coordenadas usadas (exemplos)
+Navio A (horizontal): (1,2) → (1,4)
+
+Navio B (vertical): (5,7) → (7,7)
+
+Navio C (diagonal ↘): (3,3) → (5,5)
+
+Navio D (diagonal ↙): (7,5) → (9,3)
+
+Habilidade Cone: Centrado em (2,2)
+
+Habilidade Cruz: Centrado em (6,4)
+
+Habilidade Octaedro: Centrado em (8,8)
+
+🧾 Saída (exemplo)
+=== Batalha Naval - Nivel Mestre ===
+Legenda:
+  0 = agua
+  3 = navio
+  4 = area de efeito (Cone)
+  7 = area de efeito (Cruz)
+  8 = area de efeito (Octaedro)
 
      0  1  2  3  4  5  6  7  8  9
  0   0  0  0  0  0  0  0  0  0  0
  1   0  0  3  3  3  0  0  0  0  0
- 2   0  0  0  0  0  0  0  0  0  0
- 3   0  0  0  3  0  0  0  0  0  0
- 4   0  0  0  0  3  0  0  0  0  0
- 5   0  0  0  0  0  3  0  3  0  0
- 6   0  0  0  0  0  0  0  3  0  0
- 7   0  0  0  0  0  3  0  3  0  0
- 8   0  0  0  0  3  0  0  0  0  0
- 9   0  0  0  3  0  0  0  0  0  0
-```
+ 2   0  0  4  0  0  0  0  0  0  0
+ 3   0  4  4  3  4  0  0  0  0  0
+ 4   4  4  4  4  3  0  0  0  0  0
+ 5   0  0  0  0  0  3  0  0  0  0
+ 6   0  0  0  0  7  0  0  3  0  0
+ 7   0  0  7  7  7  7  7  3  8  0
+ 8   0  0  0  0  7  3  0  8  8  8
+ 9   0  0  0  0  0  0  0  0  8  0
 
-> Nota: O exemplo acima é apenas ilustrativo — a disposição final depende das coordenadas que definimos no código (as listadas acima).
+Nota: O exemplo acima é apenas ilustrativo — a disposição final depende das coordenadas que definimos no código.
 
-## 🔧 Como compilar e rodar
-```bash
-gcc batalha_naval_aventureiro.c -o batalha_naval_aventureiro
-./batalha_naval_aventureiro
-```
+🔧 Como compilar e rodar
+gcc batalha_naval_mestre.c -o batalha_naval_mestre
+./batalha_naval_mestre
 
-## 📦 Estrutura do código
-- `inicializar_tabuleiro`: zera a matriz.
-- `verifica_linear` / `posicionar_linear`: valida e posiciona horizontais/verticais.
-- `verifica_diagonal` / `posicionar_diagonal`: valida e posiciona diagonais ↘ e ↙.
-- `imprimir_tabuleiro`: imprime cabeçalho + matriz 10x10.
+📦 Estrutura do código
+inicializar_tabuleiro: zera a matriz.
 
+verifica_linear / posicionar_linear: valida e posiciona navios horizontais/verticais.
+
+verifica_diagonal / posicionar_diagonal: valida e posiciona navios diagonais ↘ e ↙.
+
+gerar_cone, gerar_cruz, gerar_octaedro: criam as formas das habilidades em suas próprias matrizes.
+
+aplicar_habilidade: sobrepõe a matriz de habilidade no tabuleiro principal.
+
+imprimir_tabuleiro: imprime cabeçalho + matriz 10x10 com todas as representações.
